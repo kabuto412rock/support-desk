@@ -7,6 +7,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
+  isNeedBack: false,
   message: "",
 };
 
@@ -134,11 +135,19 @@ export const ticketSlice = createSlice({
       })
       .addCase(closeTicket.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.tickets.map((ticket) =>
-          ticket._id === action.payload._id
-            ? (ticket.status = "closed")
-            : ticket
-        );
+        // state.tickets.map((ticket) =>
+        //   ticket._id === action.payload._id
+        //     ? (ticket.status = "closed")
+        //     : ticket
+        // );
+        // state.tickets = state.tickets.map((ticket) => {
+        //   if (ticket._id === action.payload._id) {
+        //     ticket.status = "closed";
+        //   }
+        //   return ticket;
+        // });
+        state.isSuccess = true;
+        state.isNeedBack = true;
       });
   },
 });
